@@ -16,13 +16,6 @@
     <Filter Include="Dependencies">
       <UniqueIdentifier>{76bdb199-ec87-4779-9d30-d81b9cfd6db3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Dependencies\Libraries">
-      <UniqueIdentifier>{2edd16e8-a9f4-4cf7-9c6e-3f20fecb9340}</UniqueIdentifier>
-      <Extensions>lib;</Extensions>
-    </Filter>
-    <Filter Include="Dependencies\Includes">
-      <UniqueIdentifier>{2de3057b-15fd-4ea8-b4b5-198ad53f2930}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Camera\Camera.cpp">
