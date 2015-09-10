@@ -194,3 +194,10 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+
+
+# User Added
+# Make sure dependencies are included
+![Dd]ependencies/*
+![Dd]ependencies/[Ll]ibraries/*
+![Dd]ependencies/[Ii]nclude/*
