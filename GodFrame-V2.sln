@@ -21,6 +21,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Loading OBJ Models", "Loadi
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rendering Textures", "Rendering Textures\Rendering Textures.vcxproj", "{B20B31F9-CE25-48D5-A03D-C7592EBBF948}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8F2C1B1D-F201-4263-A2D7-34EB3B7E5CDE} = {8F2C1B1D-F201-4263-A2D7-34EB3B7E5CDE}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Loading FBX", "Loading FBX\Loading FBX.vcxproj", "{E90D09D2-1171-4132-9A00-CDAC9152B153}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8F2C1B1D-F201-4263-A2D7-34EB3B7E5CDE} = {8F2C1B1D-F201-4263-A2D7-34EB3B7E5CDE}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,6 +78,14 @@ Global
 		{B20B31F9-CE25-48D5-A03D-C7592EBBF948}.Release|x64.Build.0 = Release|x64
 		{B20B31F9-CE25-48D5-A03D-C7592EBBF948}.Release|x86.ActiveCfg = Release|Win32
 		{B20B31F9-CE25-48D5-A03D-C7592EBBF948}.Release|x86.Build.0 = Release|Win32
+		{E90D09D2-1171-4132-9A00-CDAC9152B153}.Debug|x64.ActiveCfg = Debug|x64
+		{E90D09D2-1171-4132-9A00-CDAC9152B153}.Debug|x64.Build.0 = Debug|x64
+		{E90D09D2-1171-4132-9A00-CDAC9152B153}.Debug|x86.ActiveCfg = Debug|Win32
+		{E90D09D2-1171-4132-9A00-CDAC9152B153}.Debug|x86.Build.0 = Debug|Win32
+		{E90D09D2-1171-4132-9A00-CDAC9152B153}.Release|x64.ActiveCfg = Release|x64
+		{E90D09D2-1171-4132-9A00-CDAC9152B153}.Release|x64.Build.0 = Release|x64
+		{E90D09D2-1171-4132-9A00-CDAC9152B153}.Release|x86.ActiveCfg = Release|Win32
+		{E90D09D2-1171-4132-9A00-CDAC9152B153}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
