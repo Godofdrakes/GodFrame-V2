@@ -9,7 +9,7 @@
 #include <GLFW/glfw3.h>
 #include <Camera/FlyCamera.h>
 
-void RenderApp::GenerateGrid( unsigned rows, unsigned cols ) {
+void RenderApp::GenerateGrid( unsigned int rows, unsigned int cols ) {
     Vertex* arrVertex = new Vertex[rows* cols];
     for ( unsigned int r = 0; r < rows; ++r ) {
         for ( unsigned int c = 0; c < cols; ++c ) {
@@ -65,7 +65,7 @@ void RenderApp::GenerateGrid( unsigned rows, unsigned cols ) {
     delete[]( arrVertex );
 }
 
-void RenderApp::AfterInit() {
+void RenderApp::Init_Logic() {
     glGenBuffers( 1, &vbo );
     glGenBuffers( 1, &ibo );
     glGenVertexArrays( 1, &vao );
@@ -79,16 +79,16 @@ void RenderApp::AfterInit() {
     camera->SetLookAt( vec3( 10, 10, 10 ), vec3( 0 ), vec3( 0, 1, 0 ) );
 }
 
-void RenderApp::BeforeUpdate() {
+void RenderApp::FixedUpdate_Logic() {
     camera->Update();
 }
 
-void RenderApp::BeforeRender() {
+void RenderApp::Render_Logic() {
     camera->UpdateProjectionViewTransform();
     GenerateGrid( 10, 10 );
 }
 
-void RenderApp::BeforeShutdown() {
+void RenderApp::Shutdown_Logic() {
     glDeleteProgram( programID );
 }
 

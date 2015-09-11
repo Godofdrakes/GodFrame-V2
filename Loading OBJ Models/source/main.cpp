@@ -5,6 +5,7 @@ int main() {
 
     if( app->Init() == ApplicationFail::NONE ) {
         while( app->Tick() ) {
+            app->FixedUpdate();
             app->Update();
             app->Render();
         }

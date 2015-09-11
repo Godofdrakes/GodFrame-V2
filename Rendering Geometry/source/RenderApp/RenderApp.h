@@ -10,10 +10,10 @@ class RenderApp : public Application {
     void GenerateGrid( unsigned int rows, unsigned int cols );
     unsigned int vao, vbo, ibo, programID;
 
-    virtual void AfterInit() override;
-    virtual void BeforeUpdate() override;
-    virtual void BeforeRender() override;
-    virtual void BeforeShutdown() override;
+    virtual void Init_Logic() override;
+    virtual void FixedUpdate_Logic() override;
+    virtual void Render_Logic() override;
+    virtual void Shutdown_Logic() override;
 
     Camera* camera;
 

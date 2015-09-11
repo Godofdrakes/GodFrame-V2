@@ -3,18 +3,20 @@
 #define _FbxApp_H_
 
 #include <Application.h>
+#include <FBX/FBXFile.h>
+
 class Camera;
 
 class FbxApp : public Application {
     unsigned int vao, vbo, ibo, programID, textureID;
     Camera* camera;
+    FBXFile fbxFile;
 protected:
     bool BuildShaders( const char* pathToVertexShader, const char* pathToFragmentShader );
     unsigned int LoadShader( const char* pathToShader, unsigned int shaderType );
-    virtual void AfterInit() override;
-    virtual void BeforeUpdate() override;
-    virtual void BeforeRender() override;
-    virtual void AfterRender() override;
+    virtual void Init_Logic() override;
+    virtual void FixedUpdate_Logic() override;
+    virtual void Render_Logic() override;
 public:
     FbxApp();
     FbxApp( const std::string set_name );

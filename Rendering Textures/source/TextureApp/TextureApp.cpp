@@ -71,7 +71,7 @@ unsigned int TextureApp::LoadShader( const char* pathToShader, unsigned int shad
     return shaderHandle;
 }
 
-void TextureApp::AfterInit() {
+void TextureApp::Init_Logic() {
     camera = new FlyCamera( 1.f );
     camera->SetPerspective( glm::pi<float>() * 0.25f, SIXTEEN_NINE, 0.1f, 1000.f );
     camera->SetLookAt( vec3( 10, 10, 10 ), vec3( 0 ), vec3( 0, 1, 0 ) );
@@ -97,11 +97,11 @@ void TextureApp::AfterInit() {
     stbi_image_free( imageData );
 }
 
-void TextureApp::BeforeUpdate() {
+void TextureApp::FixedUpdate_Logic() {
     camera->Update();
 }
 
-void TextureApp::BeforeRender() {
+void TextureApp::Render_Logic() {
     float vertexData[] {
         -5, 0, 5, 1, 0, 1,
         5, 0, 5, 1, 1, 1,
@@ -131,9 +131,7 @@ void TextureApp::BeforeRender() {
     glBindVertexArray( 0 );
     glBindBuffer( GL_ARRAY_BUFFER, 0 );
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
-}
 
-void TextureApp::AfterRender() {
     glUseProgram( programID );
 
     camera->UpdateProjectionViewTransform();

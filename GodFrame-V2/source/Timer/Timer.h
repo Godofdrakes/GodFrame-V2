@@ -5,13 +5,11 @@
 class Timer {
     const double TICKS_PER_SECOND, ELAPSED_CAP;
     double current, previous, lag, elapsed;
-    void( *func_ptr )( );
+    virtual void Logic() = 0;
 public:
-    Timer( void( *callback )( ), double ticks_per_sec, double elapsed_cap = 0.0 );
-    ~Timer();
+    Timer::Timer( double ticks_per_sec, double elapsed_cap = 0.0 );
+    virtual ~Timer() {};
     void CatchUp();
 };
 
 #endif
-
-

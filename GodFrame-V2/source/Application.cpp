@@ -4,34 +4,21 @@
 #include <GLFW/glfw3.h>
 #include "Input/InputDevice.h"
 
-void Application::updateTime() {
-    time_current_d_ = glfwGetTime();
-    time_elapsed_d_ = time_current_d_ - time_previous_d_;
-    time_previous_d_ = time_current_d_;
-    time_lag_d_ += time_elapsed_d_;
-}
-
 Application::Application() : Application( "TEST" ) {}
 
 Application::Application( const std::string set_name ) : Application( set_name, 1280, 720 ) {}
 
-Application::Application( const std::string set_name, const int set_width, const int set_height ) : TICK_PER_SEC_D_( 1.0 / 60.0 ) {
+Application::Application( const std::string set_name, const int set_width, const int set_height ) :
+    timeKeeper( nullptr ) {
     name_string_ = set_name;
     width_i_ = set_width;
     height_i_ = set_height;
     window_glfw_ = nullptr;
-
-    time_current_d_ = 0.0;
-    time_elapsed_d_ = 0.0;
-    time_lag_d_ = 0.0;
-    time_previous_d_ = 0.0;
 }
 
 Application::~Application() {}
 
 ApplicationFail Application::Init() {
-    BeforeInit();
-
     if ( glfwInit() == false ) { return ApplicationFail::GLFW_INIT; }
 
     window_glfw_ = glfwCreateWindow( 1280, 720, name_string_.c_str(), nullptr, nullptr );
@@ -54,44 +41,35 @@ ApplicationFail Application::Init() {
     glClearColor( 0.25f, 0.25f, 0.25f, 1.0f );
     glEnable( GL_DEPTH_TEST );
 
-    time_previous_d_ = glfwGetTime();
-
     InputDevice::Init( window_glfw_ );
 
-    AfterInit();
+    Init_Logic();
+
+    timeKeeper = new ApplicationTimer( this );
 
     return ApplicationFail::NONE;
 }
 
 void Application::Shutdown() {
-    BeforeShutdown();
+    Shutdown_Logic();
+    delete( timeKeeper );
     glfwDestroyWindow( window_glfw_ );
     glfwTerminate();
-    AfterShutdown();
 }
 
 bool Application::Tick() {
     InputState escape_key = InputDevice::GetKeyboardKey( GLFW_KEY_ESCAPE );
     if ( glfwWindowShouldClose( window_glfw_ ) ||
          escape_key == INPUT_DOWN || escape_key == INPUT_PRESS ) { return false; }
-    BeforeTick();
     glfwSwapBuffers( window_glfw_ );
     glfwPollEvents();
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-    updateTime();
-    AfterTick();
+    Tick_Logic();
     return true;
 }
 
-void Application::Update() {
-    while ( time_lag_d_ >= TICK_PER_SEC_D_ ) {
-        BeforeUpdate();
-        AfterUpdate();
-        time_lag_d_ -= TICK_PER_SEC_D_;
-    }
-}
+void Application::FixedUpdate() { timeKeeper->CatchUp(); }
 
-void Application::Render() {
-    BeforeRender();
-    AfterRender();
-}
+void Application::Update() { Update_Logic(); }
+
+void Application::Render() { Render_Logic(); }

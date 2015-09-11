@@ -2,6 +2,7 @@
 #define _APPLICATION_H_
 
 #include <string>
+#include "Timer/Timer.h"
 #pragma comment( lib, "OpenGL32.lib" )
 #pragma comment( lib, "glfw3.lib" )
 #pragma comment( lib, "GodFrame-V2.lib" )
@@ -21,6 +22,7 @@ int main() {
     Application* app = new Application();
     if ( app->Init() == ApplicationFail::NONE ) {
         while ( app->Tick() ) {
+            app->FixedUpdate();
             app->Update();
             app->Render();
         }
@@ -31,31 +33,23 @@ int main() {
 
 */
 
+class ApplicationTimer;
+
 class Application {
+    friend class ApplicationTimer;
     std::string name_string_;
     int width_i_, height_i_;
     GLFWwindow* window_glfw_;
 
-    const double TICK_PER_SEC_D_;
-    double time_current_d_, time_previous_d_, time_elapsed_d_, time_lag_d_;
-
-    void updateTime();
+    ApplicationTimer* timeKeeper;
 
 protected:
-    virtual void BeforeInit() {};
-    virtual void AfterInit() {};
-
-    virtual void BeforeShutdown() {};
-    virtual void AfterShutdown() {};
-
-    virtual void BeforeTick() {};
-    virtual void AfterTick() {};
-
-    virtual void BeforeUpdate() {};
-    virtual void AfterUpdate() {};
-
-    virtual void BeforeRender() {};
-    virtual void AfterRender() {};
+    virtual void Init_Logic() {}
+    virtual void Shutdown_Logic() {}
+    virtual void Tick_Logic() {}
+    virtual void FixedUpdate_Logic() {}
+    virtual void Update_Logic() {}
+    virtual void Render_Logic() {}
 
 public:
     Application();
@@ -67,9 +61,18 @@ public:
     void Shutdown();
 
     bool Tick();
+    void FixedUpdate();
     void Update();
     void Render();
 
+};
+
+class ApplicationTimer : public Timer {
+    Application* target;
+    virtual void Logic() override { target->FixedUpdate_Logic(); }
+public:
+    ApplicationTimer( Application* target_app ) : Timer( 60.0, 1.0 / 15.0 ), target( target_app ) {}
+    ~ApplicationTimer() {}
 };
 
 #endif

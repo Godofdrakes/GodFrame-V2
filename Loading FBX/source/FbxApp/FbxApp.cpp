@@ -3,8 +3,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <STB/stb_image.h>
 #include <GLCORE/gl_core_4_4.h>
+#include <FBX/FBXFile.h>
 #include <Camera/FlyCamera.h>
 
 bool FbxApp::BuildShaders( const char* pathToVertexShader, const char* pathToFragmentShader ) {
@@ -71,7 +71,7 @@ unsigned int FbxApp::LoadShader( const char* pathToShader, unsigned int shaderTy
     return shaderHandle;
 }
 
-void FbxApp::AfterInit() {
+void FbxApp::Init_Logic() {
     camera = new FlyCamera( 1.f );
     camera->SetPerspective( glm::pi<float>() * 0.25f, SIXTEEN_NINE, 0.1f, 1000.f );
     camera->SetLookAt( vec3( 10, 10, 10 ), vec3( 0 ), vec3( 0, 1, 0 ) );
@@ -83,7 +83,6 @@ void FbxApp::AfterInit() {
     glGenVertexArrays( 1, &vao );
     glGenBuffers( 1, &vbo );
     glGenBuffers( 1, &ibo );
-
 
     int imageWidth = 0, imageHeight = 0, imageFormat = 0;
     unsigned char* imageData = stbi_load( "./textures/crate.png", &imageWidth, &imageHeight, &imageFormat, STBI_default );
@@ -97,11 +96,11 @@ void FbxApp::AfterInit() {
     stbi_image_free( imageData );
 }
 
-void FbxApp::BeforeUpdate() {
+void FbxApp::FixedUpdate_Logic() {
     camera->Update();
 }
 
-void FbxApp::BeforeRender() {
+void FbxApp::Render_Logic() {
     float vertexData[] {
         -5, 0, 5, 1, 0, 1,
         5, 0, 5, 1, 1, 1,
@@ -131,9 +130,7 @@ void FbxApp::BeforeRender() {
     glBindVertexArray( 0 );
     glBindBuffer( GL_ARRAY_BUFFER, 0 );
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
-}
 
-void FbxApp::AfterRender() {
     glUseProgram( programID );
 
     camera->UpdateProjectionViewTransform();

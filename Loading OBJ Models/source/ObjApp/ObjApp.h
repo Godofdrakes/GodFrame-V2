@@ -25,10 +25,10 @@ class ObjApp : public Application {
     void CreateOpenGLBuffers( std::vector<tinyobj::shape_t>& shapes );
     void DrawOpenGLBuffers( std::vector<tinyobj::shape_t>& shapes );
 
-    virtual void AfterInit() override;
-    virtual void BeforeUpdate() override;
-    virtual void BeforeRender() override;
-    virtual void BeforeShutdown() override;
+    virtual void Init_Logic() override;
+    virtual void FixedUpdate_Logic() override;
+    virtual void Render_Logic() override;
+    virtual void Shutdown_Logic() override;
 public:
     ObjApp();
     ObjApp( const std::string set_name );

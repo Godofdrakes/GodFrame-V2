@@ -11,10 +11,9 @@ class TextureApp : public Application {
 protected:
     bool BuildShaders(const char* pathToVertexShader, const char* pathToFragmentShader);
     unsigned int LoadShader(const char* pathToShader, unsigned int shaderType);
-    virtual void AfterInit() override;
-    virtual void BeforeUpdate() override;
-    virtual void BeforeRender() override;
-    virtual void AfterRender() override;
+    virtual void Init_Logic() override;
+    virtual void FixedUpdate_Logic() override;
+    virtual void Render_Logic() override;
 public:
     TextureApp();
     TextureApp( const std::string set_name );

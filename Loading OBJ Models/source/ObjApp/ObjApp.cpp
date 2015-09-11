@@ -122,7 +122,7 @@ void ObjApp::DrawOpenGLBuffers( std::vector<tinyobj::shape_t>& shapes ) {
     }
 }
 
-void ObjApp::AfterInit() {
+void ObjApp::Init_Logic() {
     camera = new FlyCamera( 1.f );
     camera->SetPerspective( glm::pi<float>() * 0.25f, SIXTEEN_NINE, 0.1f, 1000.f );
     camera->SetLookAt( vec3( 10, 10, 10 ), vec3( 0 ), vec3( 0, 1, 0 ) );
@@ -142,16 +142,16 @@ void ObjApp::AfterInit() {
     CreateOpenGLBuffers( shapes );
 }
 
-void ObjApp::BeforeUpdate() {
+void ObjApp::FixedUpdate_Logic() {
     camera->Update();
 }
 
-void ObjApp::BeforeRender() {
+void ObjApp::Render_Logic() {
     camera->UpdateProjectionViewTransform();
     DrawOpenGLBuffers( shapes );
 }
 
-void ObjApp::BeforeShutdown() {
+void ObjApp::Shutdown_Logic() {
     glDeleteProgram( programID );
 }
 
