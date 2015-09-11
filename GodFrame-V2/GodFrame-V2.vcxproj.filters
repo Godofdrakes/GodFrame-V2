@@ -36,6 +36,9 @@
     <ClCompile Include="..\Dependencies\Includes\GLCORE\gl_core_4_4.c">
       <Filter>Dependencies\GLCore</Filter>
     </ClCompile>
+    <ClCompile Include="source\Timer\Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Camera\Camera.h">
@@ -52,6 +55,9 @@
     </ClInclude>
     <ClInclude Include="..\Dependencies\Includes\GLCORE\gl_core_4_4.h">
       <Filter>Dependencies\GLCore</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Timer\Timer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

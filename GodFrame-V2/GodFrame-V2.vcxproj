@@ -154,6 +154,7 @@
     <ClCompile Include="source\Camera\Camera.cpp" />
     <ClCompile Include="source\Camera\FlyCamera.cpp" />
     <ClCompile Include="source\Input\InputDevice.cpp" />
+    <ClCompile Include="source\Timer\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Dependencies\Includes\GLCORE\gl_core_4_4.h" />
@@ -161,6 +162,7 @@
     <ClInclude Include="source\Camera\Camera.h" />
     <ClInclude Include="source\Camera\FlyCamera.h" />
     <ClInclude Include="source\Input\InputDevice.h" />
+    <ClInclude Include="source\Timer\Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
