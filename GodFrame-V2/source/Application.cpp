@@ -1,7 +1,5 @@
 #include "Application.h"
 
-#include <GLM/glm.hpp>
-#include <GLM/ext.hpp>
 #include <GLCORE/gl_core_4_4.h>
 #include <GLFW/glfw3.h>
 #include "Input/InputDevice.h"
@@ -15,9 +13,9 @@ void Application::updateTime() {
 
 Application::Application() : Application( "TEST" ) {}
 
-Application::Application( const string set_name ) : Application( set_name, 1280, 720 ) {}
+Application::Application( const std::string set_name ) : Application( set_name, 1280, 720 ) {}
 
-Application::Application( const string set_name, const int set_width, const int set_height ) : TICK_PER_SEC_D_( 1.0 / 60.0 ) {
+Application::Application( const std::string set_name, const int set_width, const int set_height ) : TICK_PER_SEC_D_( 1.0 / 60.0 ) {
     name_string_ = set_name;
     width_i_ = set_width;
     height_i_ = set_height;

@@ -2,9 +2,9 @@
 #define _APPLICATION_H_
 
 #include <string>
-#pragma comment( lib, "year2-Rendering.lib" )
-
-using std::string;
+#pragma comment( lib, "OpenGL32.lib" )
+#pragma comment( lib, "glfw3.lib" )
+#pragma comment( lib, "GodFrame-V2.lib" )
 
 struct GLFWwindow;
 
@@ -32,7 +32,7 @@ int main() {
 */
 
 class Application {
-    string name_string_;
+    std::string name_string_;
     int width_i_, height_i_;
     GLFWwindow* window_glfw_;
 
@@ -59,8 +59,8 @@ protected:
 
 public:
     Application();
-    Application( const string set_name );
-    Application( const string set_name, const int set_width, const int set_height );
+    Application( const std::string set_name );
+    Application( const std::string set_name, const int set_width, const int set_height );
     virtual ~Application();
 
     ApplicationFail Init();
