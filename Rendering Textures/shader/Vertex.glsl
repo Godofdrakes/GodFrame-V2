@@ -1,14 +1,13 @@
 #version 410
 
-layout(location=0) in vec4 Position;
-layout(location=1) in vec4 Color;
+layout(location=0) in vec4 inPosition;
+layout(location=1) in vec4 inTexCoord;
 
-out vec4 vColor;
+out vec4 outTexCoord;
 
-uniform mat4 ProjectionView;
-uniform float Time;
+uniform mat4 uProjectionView;
 
 void main() {
-    vColor = Color;
-    gl_Position = ProjectionView * Position;
+    outTexCoord = inTexCoord;
+    gl_Position = uProjectionView * inPosition;
 }
