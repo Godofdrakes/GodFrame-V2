@@ -1,11 +1,11 @@
 #version 410
 
-in vec4 inTexCoord;
+in vec2 vTexCoord;
 
 out vec4 outFragColor;
 
-uniform sampler2D diffuse;
+uniform sampler2D uDiffuse;
 
 void main() {
-    outFragColor = texture( diffuse, inTexCoord );
+    outFragColor = texture( uDiffuse, vTexCoord );
 }
