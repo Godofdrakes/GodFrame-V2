@@ -201,3 +201,5 @@ FakesAssemblies/
 ![Dd]ependencies/*
 ![Dd]ependencies/[Ll]ibraries/*
 ![Dd]ependencies/[Ii]nclude/*
+Dependencies/Libraries/Debug/FBXLoader.lib
+Dependencies/Libraries/Release/FBXLoader.lib
