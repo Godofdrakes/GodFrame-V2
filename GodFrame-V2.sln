@@ -5,11 +5,6 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GodFrame-V2", "GodFrame-V2\GodFrame-V2.vcxproj", "{8F2C1B1D-F201-4263-A2D7-34EB3B7E5CDE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GodFrame-V2-App", "GodFrame-V2-App\GodFrame-V2-App.vcxproj", "{18357512-20BE-4DBD-AE29-793D628FA995}"
-	ProjectSection(ProjectDependencies) = postProject
-		{8F2C1B1D-F201-4263-A2D7-34EB3B7E5CDE} = {8F2C1B1D-F201-4263-A2D7-34EB3B7E5CDE}
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rendering Geometry", "Rendering Geometry\Rendering Geometry.vcxproj", "{F8D1FF41-BB3C-4347-A433-A487BFB699CA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{8F2C1B1D-F201-4263-A2D7-34EB3B7E5CDE} = {8F2C1B1D-F201-4263-A2D7-34EB3B7E5CDE}
@@ -46,14 +41,6 @@ Global
 		{8F2C1B1D-F201-4263-A2D7-34EB3B7E5CDE}.Release|x64.Build.0 = Release|x64
 		{8F2C1B1D-F201-4263-A2D7-34EB3B7E5CDE}.Release|x86.ActiveCfg = Release|Win32
 		{8F2C1B1D-F201-4263-A2D7-34EB3B7E5CDE}.Release|x86.Build.0 = Release|Win32
-		{18357512-20BE-4DBD-AE29-793D628FA995}.Debug|x64.ActiveCfg = Debug|x64
-		{18357512-20BE-4DBD-AE29-793D628FA995}.Debug|x64.Build.0 = Debug|x64
-		{18357512-20BE-4DBD-AE29-793D628FA995}.Debug|x86.ActiveCfg = Debug|Win32
-		{18357512-20BE-4DBD-AE29-793D628FA995}.Debug|x86.Build.0 = Debug|Win32
-		{18357512-20BE-4DBD-AE29-793D628FA995}.Release|x64.ActiveCfg = Release|x64
-		{18357512-20BE-4DBD-AE29-793D628FA995}.Release|x64.Build.0 = Release|x64
-		{18357512-20BE-4DBD-AE29-793D628FA995}.Release|x86.ActiveCfg = Release|Win32
-		{18357512-20BE-4DBD-AE29-793D628FA995}.Release|x86.Build.0 = Release|Win32
 		{F8D1FF41-BB3C-4347-A433-A487BFB699CA}.Debug|x64.ActiveCfg = Debug|x64
 		{F8D1FF41-BB3C-4347-A433-A487BFB699CA}.Debug|x64.Build.0 = Debug|x64
 		{F8D1FF41-BB3C-4347-A433-A487BFB699CA}.Debug|x86.ActiveCfg = Debug|Win32
