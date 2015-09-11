@@ -16,6 +16,9 @@
     <Filter Include="Dependencies">
       <UniqueIdentifier>{76bdb199-ec87-4779-9d30-d81b9cfd6db3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Dependencies\GLCore">
+      <UniqueIdentifier>{a5ceba46-da1f-4f98-afba-412a489586f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Camera\Camera.cpp">
@@ -30,6 +33,9 @@
     <ClCompile Include="source\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Dependencies\Includes\GLCORE\gl_core_4_4.c">
+      <Filter>Dependencies\GLCore</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Camera\Camera.h">
@@ -43,6 +49,9 @@
     </ClInclude>
     <ClInclude Include="source\Application.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Dependencies\Includes\GLCORE\gl_core_4_4.h">
+      <Filter>Dependencies\GLCore</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

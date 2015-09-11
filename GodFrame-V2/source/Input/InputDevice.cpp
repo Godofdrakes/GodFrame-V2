@@ -71,10 +71,10 @@ void InputDevice::mouse_button_callback( GLFWwindow* window, int button, int act
 void InputDevice::Init( GLFWwindow* window ) {
     xpos_old_ = xpos_new_ = 0.0;
     ypos_old_ = ypos_new_ = 0.0;
-    for ( int n = 0; n < keys.size(); ++n ) {
+    for ( unsigned int n = 0; n < keys.size(); ++n ) {
         keys[n] = INPUT_UP;
     }
-    for ( int n = 0; n < buttons.size(); ++n ) {
+    for ( unsigned int n = 0; n < buttons.size(); ++n ) {
         buttons[n] = INPUT_UP;
     }
     glfwSetKeyCallback( window, keyboard_key_callback );
