@@ -6,6 +6,8 @@
 #ifndef _TINY_OBJ_LOADER_H
 #define _TINY_OBJ_LOADER_H
 
+#pragma comment( lib, "tinyobjloader.lib" )
+
 #include <string>
 #include <vector>
 #include <map>
