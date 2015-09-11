@@ -5,6 +5,9 @@
 #include <Application.h>
 
 class TextureApp : public Application {
+    unsigned int texture;
+protected:
+    virtual void AfterInit() override;
 public:
     TextureApp();
     TextureApp( const std::string set_name );
