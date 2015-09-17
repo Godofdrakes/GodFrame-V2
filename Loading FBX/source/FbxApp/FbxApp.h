@@ -10,7 +10,7 @@ class Camera;
 class FbxApp : public Application {
     unsigned int programID;
     Camera* camera;
-    Object* mainObject;
+    ObjectData::Object* mainObject;
 protected:
     void InitCamera();
     bool BuildShaders( const char* pathToVertexShader, const char* pathToFragmentShader );

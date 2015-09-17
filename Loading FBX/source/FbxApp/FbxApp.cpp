@@ -88,7 +88,7 @@ void FbxApp::Init_Logic() {
         std::cout << "Failed to build shaders!" << std::endl;
     }
 
-    mainObject = new Object( "./assets/soulspear/soulspear.fbx" );
+    mainObject = new ObjectData::Object( "./assets/soulspear/soulspear.fbx" );
 }
 
 void FbxApp::FixedUpdate_Logic() {
