@@ -25,6 +25,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Loading FBX", "Loading FBX\
 		{8F2C1B1D-F201-4263-A2D7-34EB3B7E5CDE} = {8F2C1B1D-F201-4263-A2D7-34EB3B7E5CDE}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rendering Lighting", "Rendering Lighting\Rendering Lighting.vcxproj", "{AAA38278-B68B-4CA3-B7FA-E3C2ACAEF7F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -73,6 +75,14 @@ Global
 		{E90D09D2-1171-4132-9A00-CDAC9152B153}.Release|x64.Build.0 = Release|x64
 		{E90D09D2-1171-4132-9A00-CDAC9152B153}.Release|x86.ActiveCfg = Release|Win32
 		{E90D09D2-1171-4132-9A00-CDAC9152B153}.Release|x86.Build.0 = Release|Win32
+		{AAA38278-B68B-4CA3-B7FA-E3C2ACAEF7F0}.Debug|x64.ActiveCfg = Debug|x64
+		{AAA38278-B68B-4CA3-B7FA-E3C2ACAEF7F0}.Debug|x64.Build.0 = Debug|x64
+		{AAA38278-B68B-4CA3-B7FA-E3C2ACAEF7F0}.Debug|x86.ActiveCfg = Debug|Win32
+		{AAA38278-B68B-4CA3-B7FA-E3C2ACAEF7F0}.Debug|x86.Build.0 = Debug|Win32
+		{AAA38278-B68B-4CA3-B7FA-E3C2ACAEF7F0}.Release|x64.ActiveCfg = Release|x64
+		{AAA38278-B68B-4CA3-B7FA-E3C2ACAEF7F0}.Release|x64.Build.0 = Release|x64
+		{AAA38278-B68B-4CA3-B7FA-E3C2ACAEF7F0}.Release|x86.ActiveCfg = Release|Win32
+		{AAA38278-B68B-4CA3-B7FA-E3C2ACAEF7F0}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
