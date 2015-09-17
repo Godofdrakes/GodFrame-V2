@@ -1,6 +1,5 @@
 #pragma once
-#define GLM_SWIZZLE 
-#define GLM_FORCE_PURE
+#define GLM_SWIZZLE
 #include <glm/glm.hpp>
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtc/epsilon.hpp>
@@ -9,6 +8,8 @@
 #include <string>
 #include <thread>
 #include <mutex>
+
+#pragma comment( lib, "FBXLoader.lib" )
 
 struct ImportAssistor;
 
