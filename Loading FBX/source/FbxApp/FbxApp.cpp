@@ -21,8 +21,12 @@ bool FbxApp::BuildShaders( const char* pathToVertexShader, const char* pathToFra
     unsigned int fragmentShader = LoadShader( pathToFragmentShader, GL_FRAGMENT_SHADER );
 
     if ( vertexShader == 0 && fragmentShader == 0 ) {
-        if ( vertexShader == 0 ) { cout << "Failed to load Vertex Shader!" << endl; }
-        if ( fragmentShader == 0 ) { cout << "Failed to load Fragment Shader!" << endl; }
+        if ( vertexShader == 0 ) {
+            cout << "Failed to load Vertex Shader!" << endl;
+        }
+        if ( fragmentShader == 0 ) {
+            cout << "Failed to load Fragment Shader!" << endl;
+        }
         return false;
     }
 
@@ -65,7 +69,7 @@ unsigned int FbxApp::LoadShader( const char* pathToShader, unsigned int shaderTy
 
         cout << source << endl;
 
-        glShaderSource( shaderHandle, 1, (const char**)&source, 0 );
+        glShaderSource( shaderHandle, 1, ( const char** )&source, 0 );
         glCompileShader( shaderHandle );
 
         shader.close();
@@ -137,7 +141,7 @@ void FbxApp::Render_Logic() {
 
     camera->UpdateProjectionViewTransform();
     glUniformMatrix4fv( glGetUniformLocation( programID, "uProjectionView" ),
-                        1, GL_FALSE, glm::value_ptr( camera->Camera_View_Transform_Mat4 ) );
+                                            1, GL_FALSE, glm::value_ptr( camera->Camera_View_Transform_Mat4 ) );
 
     glActiveTexture( GL_TEXTURE0 );
     glBindTexture( GL_TEXTURE_2D, textureID );
