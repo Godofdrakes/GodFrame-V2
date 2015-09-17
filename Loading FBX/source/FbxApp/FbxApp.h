@@ -3,14 +3,14 @@
 #define _FbxApp_H_
 
 #include <Application.h>
-#include <FBX/FBXFile.h>
+#include "Object/Object.h"
 
 class Camera;
 
 class FbxApp : public Application {
-    unsigned int vao, vbo, ibo, programID, textureID;
+    unsigned int programID;
     Camera* camera;
-    FBXFile fbxFile;
+    Object* mainObject;
 protected:
     void InitCamera();
     bool BuildShaders( const char* pathToVertexShader, const char* pathToFragmentShader );

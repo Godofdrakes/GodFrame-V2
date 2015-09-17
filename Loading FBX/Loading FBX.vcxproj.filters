@@ -21,9 +21,15 @@
     <ClCompile Include="source\FbxApp\FbxApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\FbxApp\Object\Object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\FbxApp\FbxApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\FbxApp\Object\Object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

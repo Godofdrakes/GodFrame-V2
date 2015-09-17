@@ -141,10 +141,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\FbxApp\Object\Object.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\FbxApp\FbxApp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\FbxApp\Object\Object.h" />
     <ClInclude Include="source\FbxApp\FbxApp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

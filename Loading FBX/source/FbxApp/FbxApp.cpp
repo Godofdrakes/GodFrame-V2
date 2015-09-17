@@ -88,16 +88,7 @@ void FbxApp::Init_Logic() {
         std::cout << "Failed to build shaders!" << std::endl;
     }
 
-    glGenVertexArrays( 1, &vao );
-    glGenBuffers( 1, &vbo );
-    glGenBuffers( 1, &ibo );
-    fbxFile.load( "./assets/soulspear/soulspear.fbx" );
-
-    glGenTextures( 1, &textureID );
-    glBindTexture( GL_TEXTURE_2D, textureID );
-    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, fbxFile.getTextureByIndex( 0 )->width, fbxFile.getTextureByIndex( 0 )->height, 1, GL_RGB, GL_UNSIGNED_BYTE, fbxFile.getTextureByIndex( 0 )->data );
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+    mainObject = new Object( "./assets/soulspear/soulspear.fbx" );
 }
 
 void FbxApp::FixedUpdate_Logic() {
@@ -105,55 +96,16 @@ void FbxApp::FixedUpdate_Logic() {
 }
 
 void FbxApp::Render_Logic() {
-    float vertexData[] {
-        -5, 0, 5, 1, 0, 1,
-        5, 0, 5, 1, 1, 1,
-        5, 0, -5, 1, 1, 0,
-        -5, 0, -5, 1, 0, 0,
-    };
-
-    unsigned int indexData[] {
-        0, 1, 2,
-        0, 2, 3,
-    };
-
-    FBXMeshNode* mesh = fbxFile.getMeshByIndex( 0 );
-
-    glBindVertexArray( vao );
-
-    glBindBuffer( GL_ARRAY_BUFFER, vbo );
-    glBufferData( GL_ARRAY_BUFFER, sizeof( FBXVertex) * mesh->m_vertices.size(), mesh->m_vertices.data(), GL_STATIC_DRAW );
-
-    glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, ibo );
-    glBufferData( GL_ELEMENT_ARRAY_BUFFER, sizeof( unsigned int) * mesh->m_indices.size(), mesh->m_indices.data(), GL_STATIC_DRAW );
-
-    glEnableVertexAttribArray( 0 );
-    glVertexAttribPointer( 0, 4, GL_FLOAT, GL_FALSE, sizeof( FBXVertex), nullptr );
-
-    glEnableVertexAttribArray( 1 );
-    glVertexAttribPointer( 1, 2, GL_FLOAT, GL_FALSE, sizeof( FBXVertex), ( void* )FBXVertex::Offsets::TexCoord1Offset );
-
-    glBindVertexArray( 0 );
-    glBindBuffer( GL_ARRAY_BUFFER, 0 );
-    glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
-
-    glUseProgram( programID );
-
-    camera->UpdateProjectionViewTransform();
-    glUniformMatrix4fv( glGetUniformLocation( programID, "uProjectionView" ),
-                                            1, GL_FALSE, glm::value_ptr( camera->Camera_View_Transform_Mat4 ) );
-
-    glActiveTexture( GL_TEXTURE0 );
-    glBindTexture( GL_TEXTURE_2D, textureID );
-
-    glUniform1i( glGetUniformLocation( programID, "uDiffuse" ), 0 );
-
-    glBindVertexArray( vao );
-    glDrawElements( GL_TRIANGLES, mesh->m_indices.size(), GL_UNSIGNED_INT, nullptr );
+    if( mainObject != nullptr ) {
+        camera->UpdateProjectionViewTransform();
+        mainObject->Render( programID, camera->Camera_View_Transform_Mat4 );
+    }
 }
 
 void FbxApp::Shutdown_Logic() {
-    fbxFile.unload();
+    if ( mainObject != nullptr ) {
+        delete( mainObject );
+    }
 }
 
 FbxApp::FbxApp() :
@@ -164,7 +116,6 @@ FbxApp::FbxApp( const std::string set_name ) :
 
 FbxApp::FbxApp( const std::string set_name, const int set_width, const int set_height ) :
     Application( set_name, set_width, set_height ),
-    vao( 0 ), vbo( 0 ), ibo( 0 ), programID( 0 ),
-    textureID( 0 ), camera( nullptr ) {}
+    programID( 0 ), camera( nullptr ), mainObject( nullptr ) {}
 
 FbxApp::~FbxApp() {}
