@@ -87,17 +87,13 @@ void FbxApp::Init_Logic() {
     glGenVertexArrays( 1, &vao );
     glGenBuffers( 1, &vbo );
     glGenBuffers( 1, &ibo );
-
-    int imageWidth = 0, imageHeight = 0, imageFormat = 0;
-    unsigned char* imageData = stbi_load( "./textures/crate.png", &imageWidth, &imageHeight, &imageFormat, STBI_default );
+    fbxFile.load( "./assets/soulspear/soulspear.fbx" );
 
     glGenTextures( 1, &textureID );
     glBindTexture( GL_TEXTURE_2D, textureID );
-    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, imageWidth, imageHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, imageData );
+    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, fbxFile.getTextureByIndex( 0 )->width, fbxFile.getTextureByIndex( 0 )->height, 1, GL_RGB, GL_UNSIGNED_BYTE, fbxFile.getTextureByIndex( 0 )->data );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-
-    stbi_image_free( imageData );
 }
 
 void FbxApp::FixedUpdate_Logic() {
@@ -117,19 +113,21 @@ void FbxApp::Render_Logic() {
         0, 2, 3,
     };
 
+    FBXMeshNode* mesh = fbxFile.getMeshByIndex( 0 );
+
     glBindVertexArray( vao );
-    
+
     glBindBuffer( GL_ARRAY_BUFFER, vbo );
-    glBufferData( GL_ARRAY_BUFFER, sizeof( float ) * 6 * 4, vertexData, GL_STATIC_DRAW );
+    glBufferData( GL_ARRAY_BUFFER, sizeof( FBXVertex) * mesh->m_vertices.size(), mesh->m_vertices.data(), GL_STATIC_DRAW );
 
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, ibo );
-    glBufferData( GL_ELEMENT_ARRAY_BUFFER, sizeof( unsigned int ) * 3 * 2, indexData, GL_STATIC_DRAW );
+    glBufferData( GL_ELEMENT_ARRAY_BUFFER, sizeof( unsigned int) * mesh->m_indices.size(), mesh->m_indices.data(), GL_STATIC_DRAW );
 
     glEnableVertexAttribArray( 0 );
-    glVertexAttribPointer( 0, 4, GL_FLOAT, GL_FALSE, sizeof( float ) * 6, 0 );
+    glVertexAttribPointer( 0, 4, GL_FLOAT, GL_FALSE, sizeof( FBXVertex), nullptr );
 
     glEnableVertexAttribArray( 1 );
-    glVertexAttribPointer( 1, 2, GL_FLOAT, GL_FALSE, sizeof( float ) * 6, (void*)( sizeof( float ) * 4 ) );
+    glVertexAttribPointer( 1, 2, GL_FLOAT, GL_FALSE, sizeof( FBXVertex), ( void* )FBXVertex::Offsets::TexCoord1Offset );
 
     glBindVertexArray( 0 );
     glBindBuffer( GL_ARRAY_BUFFER, 0 );
@@ -147,10 +145,11 @@ void FbxApp::Render_Logic() {
     glUniform1i( glGetUniformLocation( programID, "uDiffuse" ), 0 );
 
     glBindVertexArray( vao );
-    glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr );
+    glDrawElements( GL_TRIANGLES, mesh->m_indices.size(), GL_UNSIGNED_INT, nullptr );
 }
 
 void FbxApp::Shutdown_Logic() {
+    fbxFile.unload();
 }
 
 FbxApp::FbxApp() :
