@@ -10,7 +10,7 @@ class Camera;
 class LightApp : public Application {
     unsigned int programID;
     Camera* camera;
-    ObjectData::Object* mainObject;
+    Object* mainObject;
 protected:
     void InitCamera();
     bool BuildShaders( const char* pathToVertexShader, const char* pathToFragmentShader );

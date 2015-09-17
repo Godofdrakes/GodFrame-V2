@@ -4,7 +4,6 @@
 #include <iostream>
 #include <GLM/gtc/type_ptr.hpp>
 
-namespace ObjectData {
 
     // Not needed by classes other than object
     struct Vert {
@@ -108,4 +107,3 @@ namespace ObjectData {
         glBindVertexArray( 0 );
     }
 
-}
