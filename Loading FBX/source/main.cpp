@@ -4,6 +4,7 @@ int main() {
     Application* app = new FbxApp();
     if ( app->Init() == ApplicationFail::NONE ) {
         while ( app->Tick() ) {
+            app->FixedUpdate();
             app->Update();
             app->Render();
         }
