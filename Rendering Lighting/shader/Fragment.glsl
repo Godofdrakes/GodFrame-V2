@@ -12,7 +12,8 @@ in vec2 vTexCoord2;
 
 out vec4 outFragColor;
 
-uniform sampler2D uDiffuse;
+uniform sampler2D uTexture1;
+uniform sampler2D uTexture2;
 uniform bool uHasColor;
 uniform bool uHasNormal;
 uniform bool uHasTangent;
@@ -25,12 +26,15 @@ uniform bool uHasTexCoord2;
 void main() {
     vec4 myColor = vec4( 1, 1, 1, 1 );
     if( uHasColor ) { myColor = vColor; }
-    if( uHasNormal ) {  } // ?
+    if( uHasNormal ) {
+        float d = max( 0, dot( normalize(vNormal.xyz), vec3( 0, 1, 0 ) ) );
+        myColor = vec4( d, d, d, 1 ) * myColor;
+    }
     if( uHasTangent ) {  } // ?
     if( uHasBiNormal ) {  } // ?
     if( uHasIndices ) {  } // ?
     if( uHasWeights ) {  } // ?
-    if( uHasTexCoord1 ) { myColor = texture( uDiffuse, vTexCoord1 ) * myColor; }
-    if( uHasTexCoord2 ) { } // ?
+    if( uHasTexCoord1 ) { myColor = texture( uTexture1, vTexCoord1 ) * myColor; }
+    if( uHasTexCoord2 ) { myColor = texture( uTexture2, vTexCoord2 ) * myColor; } // ?
     outFragColor = myColor;
 }

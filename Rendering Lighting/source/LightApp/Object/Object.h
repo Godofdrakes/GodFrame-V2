@@ -9,9 +9,8 @@ class Object {
     unsigned int vao, vbo, ibo;
     unsigned int* textureID;
     unsigned int textureCount, indexCount;
-    unsigned int uDiffuse;
 public:
-    bool uHasColor, uHasNormal, uHasTangent, uHasBiNormal, uHasIndices, uHasWeights, uHasTexCoord1, uHasTexCoord2;
+    bool uHasColor, uHasNormal, uHasTangent, uHasBiNormal, uHasIndices, uHasWeights, useWireframe;
     Object( const char* fbx_file_path );
     ~Object();
 

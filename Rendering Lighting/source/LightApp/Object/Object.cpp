@@ -6,11 +6,10 @@
 
 Object::Object( const char* fbxFilePath ) :
     vao( 0 ), vbo( 0 ), ibo( 0 ), textureID( nullptr ),
-    textureCount( 0 ), uDiffuse( 0 ),
-    uHasColor( false ), uHasNormal( false ),
-    uHasTangent( false ), uHasBiNormal( false ),
-    uHasIndices( false ), uHasWeights( false ),
-    uHasTexCoord1( false ), uHasTexCoord2( false ) {
+    textureCount( 0 ), uHasColor( false ),
+    uHasNormal( false ), uHasTangent( false ),
+    uHasBiNormal( false ), uHasIndices( false ),
+    uHasWeights( false ), useWireframe( false ) {
 
     FBXFile* file = new FBXFile();
     file->load( fbxFilePath );
@@ -21,7 +20,6 @@ Object::Object( const char* fbxFilePath ) :
     glGenBuffers( 1, &ibo );
 
     if ( textureCount > 0 ) {
-        uHasTexCoord1 = true;
         textureID = new unsigned int[textureCount];
         glGenTextures( textureCount, textureID );
 
@@ -113,7 +111,6 @@ void Object::Render( const unsigned int program_id,
     glUniformMatrix4fv( glGetUniformLocation( program_id, "uProjectionView" ),
                                             1, GL_FALSE, glm::value_ptr( projection_view ) );
 
-    glUniform1i( glGetUniformLocation( program_id, "uDiffuse" ), uDiffuse );
 
     glUniform1i( glGetUniformLocation( program_id, "uHasColor" ), uHasColor );
     glUniform1i( glGetUniformLocation( program_id, "uHasNormal" ), uHasNormal );
@@ -121,13 +118,20 @@ void Object::Render( const unsigned int program_id,
     glUniform1i( glGetUniformLocation( program_id, "uHasBiNormal" ), uHasBiNormal );
     glUniform1i( glGetUniformLocation( program_id, "uHasIndices" ), uHasIndices );
     glUniform1i( glGetUniformLocation( program_id, "uHasWeights" ), uHasWeights );
-    glUniform1i( glGetUniformLocation( program_id, "uHasTexCoord1" ), uHasTexCoord1 );
-    glUniform1i( glGetUniformLocation( program_id, "uHasTexCoord2" ), uHasTexCoord2 );
+    glUniform1i( glGetUniformLocation( program_id, "uHasTexCoord1" ), false );
+    glUniform1i( glGetUniformLocation( program_id, "uHasTexCoord2" ), false );
 
-    if ( uHasTexCoord1 ) {
+    if ( textureCount > 0 ) {
         glActiveTexture( GL_TEXTURE0 );
         glBindTexture( GL_TEXTURE_2D, textureID[0] );
-    } else {
+        glUniform1i( glGetUniformLocation( program_id, "uTexture1" ), 0 );
+        if ( textureCount > 1 ) {
+            glActiveTexture( GL_TEXTURE1 );
+            glBindTexture( GL_TEXTURE_2D, textureID[1] );
+            glUniform1i( glGetUniformLocation( program_id, "uTexture1" ), 1 );
+        }
+    }
+    if ( useWireframe ) {
         glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
     }
 
