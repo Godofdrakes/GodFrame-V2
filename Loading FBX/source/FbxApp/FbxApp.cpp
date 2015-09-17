@@ -7,6 +7,12 @@
 #include <FBX/FBXFile.h>
 #include <Camera/FlyCamera.h>
 
+void FbxApp::InitCamera() {
+    camera = new FlyCamera( 1.f );
+    camera->SetPerspective( glm::pi<float>() * 0.25f, SIXTEEN_NINE, 0.1f, 1000.f );
+    camera->SetLookAt( vec3( 10, 10, 10 ), vec3( 0 ), vec3( 0, 1, 0 ) );
+}
+
 bool FbxApp::BuildShaders( const char* pathToVertexShader, const char* pathToFragmentShader ) {
     using namespace std;
 
@@ -72,9 +78,7 @@ unsigned int FbxApp::LoadShader( const char* pathToShader, unsigned int shaderTy
 }
 
 void FbxApp::Init_Logic() {
-    camera = new FlyCamera( 1.f );
-    camera->SetPerspective( glm::pi<float>() * 0.25f, SIXTEEN_NINE, 0.1f, 1000.f );
-    camera->SetLookAt( vec3( 10, 10, 10 ), vec3( 0 ), vec3( 0, 1, 0 ) );
+    InitCamera();
 
     if ( BuildShaders( "./shader/Vertex.glsl", "./shader/Fragment.glsl" ) == false ) {
         std::cout << "Failed to build shaders!" << std::endl;

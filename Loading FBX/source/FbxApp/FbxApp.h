@@ -12,6 +12,7 @@ class FbxApp : public Application {
     Camera* camera;
     FBXFile fbxFile;
 protected:
+    void InitCamera();
     bool BuildShaders( const char* pathToVertexShader, const char* pathToFragmentShader );
     unsigned int LoadShader( const char* pathToShader, unsigned int shaderType );
     virtual void Init_Logic() override;
