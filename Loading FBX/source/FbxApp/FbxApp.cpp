@@ -150,6 +150,9 @@ void FbxApp::Render_Logic() {
     glDrawElements( GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr );
 }
 
+void FbxApp::Shutdown_Logic() {
+}
+
 FbxApp::FbxApp() :
     FbxApp( "FbxApp" ) {}
 

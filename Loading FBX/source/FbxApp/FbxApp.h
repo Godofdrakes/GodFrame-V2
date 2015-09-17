@@ -18,6 +18,7 @@ protected:
     virtual void Init_Logic() override;
     virtual void FixedUpdate_Logic() override;
     virtual void Render_Logic() override;
+    virtual void Shutdown_Logic() override;
 public:
     FbxApp();
     FbxApp( const std::string set_name );
