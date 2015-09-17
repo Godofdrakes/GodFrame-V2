@@ -88,7 +88,8 @@ void LightApp::Init_Logic() {
         std::cout << "Failed to build shaders!" << std::endl;
     }
 
-    mainObject = new Object( "./assets/soulspear/soulspear.fbx" );
+    mainObject = new Object( "./assets/stanford/Bunny.fbx" );
+    mainObject->uHasNormal = true;
 }
 
 void LightApp::FixedUpdate_Logic() {
