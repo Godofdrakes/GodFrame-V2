@@ -58,6 +58,11 @@ public:
         return camera_view_transform_mat4_;
     }
     __declspec( property( get = Get_Camera_View_Transform_Mat4 ) ) mat4 Camera_View_Transform_Mat4;
+
+    vec3 Get_Position_vec3() const {
+        return position_vec3_;
+    }
+    __declspec( property( get = Get_Position_vec3 ) ) vec3 Position_Vec3;
 };
 
 #endif
