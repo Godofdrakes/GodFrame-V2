@@ -7,7 +7,7 @@
 Object::Object( const char* fbxFilePath ) :
     vao( 0 ), vbo( 0 ), ibo( 0 ), textureID( nullptr ),
     textureCount( 0 ), uHasColor( false ),
-    uHasNormal( false ), uHasTangent( false ),
+    uHasLight( false ), uHasTangent( false ),
     uHasBiNormal( false ), uHasIndices( false ),
     uHasWeights( false ), useWireframe( false ) {
 
@@ -103,7 +103,8 @@ Object::~Object() {
 }
 
 void Object::Render( const unsigned int program_id,
-                     const glm::mat4& projection_view ) {
+                     const glm::mat4& projection_view,
+                     const glm::vec3& camera_position ) {
     // If there's more than one mesh this won't render those.
     // TODO: FIX?
     glUseProgram( program_id );
@@ -113,7 +114,11 @@ void Object::Render( const unsigned int program_id,
 
 
     glUniform1i( glGetUniformLocation( program_id, "uHasColor" ), uHasColor );
-    glUniform1i( glGetUniformLocation( program_id, "uHasNormal" ), uHasNormal );
+    glUniform1i( glGetUniformLocation( program_id, "uHasLight" ), uHasLight );
+    glUniform3f( glGetUniformLocation( program_id, "uLightPosition" ), 0.f, 1.f, 0.f );
+    glUniform3f( glGetUniformLocation( program_id, "uLightColor" ), 1.f, 1.f, 1.f );
+    glUniform3fv( glGetUniformLocation( program_id, "uCameraPosition" ), 1, glm::value_ptr( camera_position ) );
+    glUniform1f( glGetUniformLocation( program_id, "uSpecPower" ), 128 );
     glUniform1i( glGetUniformLocation( program_id, "uHasTangent" ), uHasTangent );
     glUniform1i( glGetUniformLocation( program_id, "uHasBiNormal" ), uHasBiNormal );
     glUniform1i( glGetUniformLocation( program_id, "uHasIndices" ), uHasIndices );

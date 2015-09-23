@@ -15,7 +15,12 @@ out vec4 outFragColor;
 uniform sampler2D uTexture1;
 uniform sampler2D uTexture2;
 uniform bool uHasColor;
-uniform bool uHasNormal;
+uniform bool uNormal;
+uniform bool uHasLight;
+uniform vec3 uLightPosition;
+uniform vec3 uLightColor;
+uniform vec3 uCameraPosition;
+uniform float uSpecPower;
 uniform bool uHasTangent;
 uniform bool uHasBiNormal;
 uniform bool uHasIndices;
@@ -26,9 +31,13 @@ uniform bool uHasTexCoord2;
 void main() {
     vec4 myColor = vec4( 1, 1, 1, 1 );
     if( uHasColor ) { myColor = vColor; }
-    if( uHasNormal ) {
-        float d = max( 0, dot( normalize(vNormal.xyz), vec3( 0, 1, 0 ) ) );
-        myColor = vec4( d, d, d, 1 ) * myColor;
+    if( uHasLight ) {
+        float d = max( 0, dot( normalize(vNormal.xyz), uLightPosition ) );
+        vec3 E = normalize( uCameraPosition - vPosition.xyz );
+        vec3 R = reflect( -uLightPosition, vNormal.xyz );
+        float s = max( 0, dot( E, R ) );
+        s = pow( s, uSpecPower );
+        myColor = vec4( uLightColor * d + uLightColor * s, 1 ) * myColor;
     }
     if( uHasTangent ) {  } // ?
     if( uHasBiNormal ) {  } // ?

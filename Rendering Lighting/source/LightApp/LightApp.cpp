@@ -89,7 +89,6 @@ void LightApp::Init_Logic() {
     }
 
     mainObject = new Object( "./assets/stanford/Bunny.fbx" );
-    mainObject->uHasNormal = true;
 }
 
 void LightApp::FixedUpdate_Logic() {
@@ -99,7 +98,8 @@ void LightApp::FixedUpdate_Logic() {
 void LightApp::Render_Logic() {
     if( mainObject != nullptr ) {
         camera->UpdateProjectionViewTransform();
-        mainObject->Render( programID, camera->Camera_View_Transform_Mat4 );
+        mainObject->Render( programID, camera->Camera_View_Transform_Mat4, camera->Position_Vec3 );
+        mainObject->uHasLight = true;
     }
 }
 

@@ -1,4 +1,4 @@
-#pragma once
+#pragma once 
 #ifndef _Object_H_
 #define _Object_H_
 #include <glm/glm.hpp>
@@ -10,12 +10,13 @@ class Object {
     unsigned int* textureID;
     unsigned int textureCount, indexCount;
 public:
-    bool uHasColor, uHasNormal, uHasTangent, uHasBiNormal, uHasIndices, uHasWeights, useWireframe;
+    bool uHasColor, uHasLight, uHasTangent, uHasBiNormal, uHasIndices, uHasWeights, useWireframe;
     Object( const char* fbx_file_path );
     ~Object();
 
     void Render( const unsigned int program_id,
-                 const glm::mat4& projection_view );
+                 const glm::mat4& projection_view,
+                 const glm::vec3& camera_position );
 };
 
 #endif
