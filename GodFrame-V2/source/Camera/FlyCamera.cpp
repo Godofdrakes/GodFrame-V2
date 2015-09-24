@@ -6,8 +6,9 @@
 using glm::mat4;
 
 FlyCamera::FlyCamera( const float speed_f )
-    : up_key_( GLFW_KEY_W ), down_key_( GLFW_KEY_S ),
+    : up_key_( GLFW_KEY_R ), down_key_( GLFW_KEY_F ),
     left_key_( GLFW_KEY_A ), right_key_( GLFW_KEY_D ),
+    front_key_( GLFW_KEY_W ), back_key_( GLFW_KEY_S ),
     speed_f_( speed_f ) {}
 
 FlyCamera::~FlyCamera() {}
@@ -26,6 +27,12 @@ void FlyCamera::Update() {
     }
     if ( InputDevice::GetKeyboardKey( right_key_ ) == INPUT_DOWN || InputDevice::GetKeyboardKey( right_key_ ) == INPUT_PRESS ) {
         position_vec3_.x += speed_f_;
+    }
+    if ( InputDevice::GetKeyboardKey( front_key_ ) == INPUT_DOWN || InputDevice::GetKeyboardKey( front_key_ ) == INPUT_PRESS ) {
+        position_vec3_.z -= speed_f_;
+    }
+    if ( InputDevice::GetKeyboardKey( back_key_ ) == INPUT_DOWN || InputDevice::GetKeyboardKey( back_key_ ) == INPUT_PRESS ) {
+        position_vec3_.z += speed_f_;
     }
 
     /*vec2 mouse_new = Input::GetMousePosition();

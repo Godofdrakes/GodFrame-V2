@@ -8,7 +8,7 @@
 using glm::vec2;
 
 class FlyCamera : public Camera {
-    int up_key_, down_key_, left_key_, right_key_;
+    int up_key_, down_key_, left_key_, right_key_, front_key_, back_key_;
     float speed_f_;
 
 public:
