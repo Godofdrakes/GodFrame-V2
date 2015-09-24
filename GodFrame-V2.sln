@@ -29,6 +29,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rendering Lighting", "Rende
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Advanced Texturing", "Advanced Texturing\Advanced Texturing.vcxproj", "{5267D333-565C-49BB-8C49-DE7F281DDA97}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Render Targets", "Render Targets\Render Targets.vcxproj", "{980E5214-8D11-4E68-A695-4564102FB12E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -93,6 +95,14 @@ Global
 		{5267D333-565C-49BB-8C49-DE7F281DDA97}.Release|x64.Build.0 = Release|x64
 		{5267D333-565C-49BB-8C49-DE7F281DDA97}.Release|x86.ActiveCfg = Release|Win32
 		{5267D333-565C-49BB-8C49-DE7F281DDA97}.Release|x86.Build.0 = Release|Win32
+		{980E5214-8D11-4E68-A695-4564102FB12E}.Debug|x64.ActiveCfg = Debug|x64
+		{980E5214-8D11-4E68-A695-4564102FB12E}.Debug|x64.Build.0 = Debug|x64
+		{980E5214-8D11-4E68-A695-4564102FB12E}.Debug|x86.ActiveCfg = Debug|Win32
+		{980E5214-8D11-4E68-A695-4564102FB12E}.Debug|x86.Build.0 = Debug|Win32
+		{980E5214-8D11-4E68-A695-4564102FB12E}.Release|x64.ActiveCfg = Release|x64
+		{980E5214-8D11-4E68-A695-4564102FB12E}.Release|x64.Build.0 = Release|x64
+		{980E5214-8D11-4E68-A695-4564102FB12E}.Release|x86.ActiveCfg = Release|Win32
+		{980E5214-8D11-4E68-A695-4564102FB12E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
