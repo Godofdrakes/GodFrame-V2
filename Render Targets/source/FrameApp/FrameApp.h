@@ -3,14 +3,12 @@
 #define _FrameApp_H_
 
 #include <Application.h>
-#include "Object/Object.h"
 
 class Camera;
 
 class FrameApp : public Application {
     unsigned int programID;
     Camera* camera;
-    Object* mainObject;
     unsigned int frameBuffer, frameTexture, frameDepth,
                  mirrorVAO, mirrorVBO, mirrorIBO;
 protected:

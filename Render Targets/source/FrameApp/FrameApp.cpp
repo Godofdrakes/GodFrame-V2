@@ -73,7 +73,8 @@ unsigned int FrameApp::LoadShader( const char* pathToShader, unsigned int shader
         glCompileShader( shaderHandle );
 
         shader.close();
-    } else {
+    }
+    else {
         cout << "Could not load Shader: " << pathToShader << endl;
         glDeleteShader( shaderHandle );
         return 0;
@@ -88,8 +89,6 @@ void FrameApp::Init_Logic() {
         std::cout << "Failed to build shaders!" << std::endl;
     }
 
-    mainObject = new Object( "./assets/soulspear/soulspear.fbx" );
-    
     glGenFramebuffers( 1, &frameBuffer );
     glBindFramebuffer( GL_FRAMEBUFFER, frameBuffer );
 
@@ -111,7 +110,7 @@ void FrameApp::Init_Logic() {
     glDrawBuffers( 1, drawBuffers );
 
     GLenum status = glCheckFramebufferStatus( GL_FRAMEBUFFER );
-    if( status != GL_FRAMEBUFFER_COMPLETE ) {
+    if ( status != GL_FRAMEBUFFER_COMPLETE ) {
         std::cout << "Framebuffer Error!" << std::endl;
     }
 
@@ -133,14 +132,14 @@ void FrameApp::Init_Logic() {
     glBindVertexArray( mirrorVAO );
     glGenBuffers( 1, &mirrorVBO );
     glBindBuffer( GL_ARRAY_BUFFER, mirrorVBO );
-    glBufferData( GL_ARRAY_BUFFER, sizeof( float ) * 6 * 4, vertexData, GL_STATIC_DRAW );
+    glBufferData( GL_ARRAY_BUFFER, sizeof( float) * 6 * 4, vertexData, GL_STATIC_DRAW );
     glGenBuffers( 1, &mirrorIBO );
     glBindBuffer( 1, mirrorIBO );
-    glBufferData( GL_ELEMENT_ARRAY_BUFFER, sizeof( unsigned int ) * 6, indexData, GL_STATIC_DRAW );
+    glBufferData( GL_ELEMENT_ARRAY_BUFFER, sizeof( unsigned int) * 6, indexData, GL_STATIC_DRAW );
     glEnableVertexAttribArray( 0 );
-    glVertexAttribPointer( 0, 4, GL_FLOAT, GL_FALSE, sizeof( float ) * 6, 0 );
+    glVertexAttribPointer( 0, 4, GL_FLOAT, GL_FALSE, sizeof( float) * 6, 0 );
     glEnableVertexAttribArray( 1 );
-    glVertexAttribPointer( 1, 2, GL_FLOAT, GL_FALSE, sizeof( float ) * 6, (void*)( sizeof( float ) * 4 ) );
+    glVertexAttribPointer( 1, 2, GL_FLOAT, GL_FALSE, sizeof( float) * 6, ( void* )( sizeof( float) * 4 ) );
     glBindVertexArray( 0 );
     glBindBuffer( GL_ARRAY_BUFFER, 0 );
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, 0 );
@@ -151,19 +150,13 @@ void FrameApp::FixedUpdate_Logic() {
 }
 
 void FrameApp::Render_Logic() {
-    if( mainObject != nullptr ) {
-        camera->UpdateProjectionViewTransform();
-        mainObject->Render( programID, camera->Camera_View_Transform_Mat4, camera->Position_Vec3 );
-    }
+    camera->UpdateProjectionViewTransform();
 }
 
 void FrameApp::Shutdown_Logic() {
     glDeleteRenderbuffers( 1, &frameDepth );
     glDeleteTextures( 1, &frameTexture );
     glDeleteFramebuffers( 1, &frameBuffer );
-    if ( mainObject != nullptr ) {
-        delete( mainObject );
-    }
 }
 
 FrameApp::FrameApp() :
@@ -174,6 +167,8 @@ FrameApp::FrameApp( const std::string set_name ) :
 
 FrameApp::FrameApp( const std::string set_name, const int set_width, const int set_height ) :
     Application( set_name, set_width, set_height ),
-    programID( 0 ), camera( nullptr ), mainObject( nullptr ) {}
+    programID( 0 ), camera( nullptr ),
+    frameBuffer( 0 ), frameTexture( 0 ), frameDepth( 0 ),
+    mirrorVAO( 0 ), mirrorVBO( 0 ), mirrorIBO( 0 ) {}
 
 FrameApp::~FrameApp() {}

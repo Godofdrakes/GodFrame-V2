@@ -131,12 +131,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\FrameApp\FrameApp.cpp" />
-    <ClCompile Include="source\FrameApp\Object\Object.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\FrameApp\FrameApp.h" />
-    <ClInclude Include="source\FrameApp\Object\Object.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
